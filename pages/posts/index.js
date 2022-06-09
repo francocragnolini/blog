@@ -1,7 +1,7 @@
-import { Fragment } from "react";
-import Hero from "../components/home-page/hero";
-import FeaturedPosts from "../components/home-page/featured-posts";
+import AllPosts from "../../components/posts/all-posts";
+import { getAllPosts } from "../../lib/posts-util";
 import Head from "next/head";
+import { Fragment } from "react";
 
 // const DUMMY_POSTS = [
 //   {
@@ -38,29 +38,28 @@ import Head from "next/head";
 //   },
 // ];
 
-import { getFeaturedPosts } from "../lib/posts-util";
-
-export default function HomePage(props) {
+const AllPostsPage = (props) => {
   return (
     <Fragment>
       <Head>
-        <title>Franks Blog</title>
+        <title>All Posts</title>
         <meta
           name="description"
-          content="I post about programming and web development"
+          content="A list of all programming-related tutorials and posts"
         />
       </Head>
-      <Hero />
-      <FeaturedPosts posts={props.posts} />
+      <AllPosts posts={props.posts} />
     </Fragment>
   );
-}
+};
+
+export default AllPostsPage;
 
 export function getStaticProps() {
-  const featuredPosts = getFeaturedPosts();
+  const allPosts = getAllPosts();
   return {
     props: {
-      posts: featuredPosts,
+      posts: allPosts,
     },
   };
 }
